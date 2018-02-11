@@ -24,12 +24,12 @@
   @include breakpoint($large) {
     float: right;
     width: calc(100% - #{$right-sidebar-width-narrow});
-    padding-right: $right-sidebar-padding-narrow;
+    padding-right: $right-sidebar-width-narrow;
   }
 
   @include breakpoint($x-large) {
     width: calc(100% - #{$right-sidebar-width});
-    padding-right: $right-sidebar-padding;
+    padding-right: $right-sidebar-width;
   }
 
   .page__inner-wrap {
@@ -67,12 +67,9 @@
 }
 
 .page__content {
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0.5em 0;
-  }
-
-  div {
-    margin-bottom: 10px;
+  h2 {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid $border-color;
   }
 
   p,
@@ -428,4 +425,30 @@
   margin-bottom: 10px;
   font-size: $type-size-6;
   text-transform: uppercase;
+}
+
+/*
+   Wide Pages
+   ========================================================================== */
+
+.wide {
+  .page {
+    @include breakpoint($large) {
+      padding-right: 0;
+    }
+
+    @include breakpoint($x-large) {
+      padding-right: 0;
+    }
+  }
+
+  .page__related {
+    @include breakpoint($large) {
+      padding-right: 0;
+    }
+
+    @include breakpoint($x-large) {
+      padding-right: 0;
+    }
+  }
 }

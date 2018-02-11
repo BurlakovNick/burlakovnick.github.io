@@ -8,12 +8,13 @@
   @include breakpoint($large) {
     float: right;
     width: calc(100% - #{$right-sidebar-width-narrow});
-    padding-right: $right-sidebar-padding-narrow;
+    padding-right: $right-sidebar-width-narrow;
+    padding-left: 10px;
   }
 
   @include breakpoint($x-large) {
     width: calc(100% - #{$right-sidebar-width});
-    padding-right: $right-sidebar-padding;
+    padding-right: $right-sidebar-width;
   }
 }
 
