@@ -1,7 +1,7 @@
 ---
 title: News Feed Patterns
 header:
-  teaser: assets/posts/twitter_feed/teaser.png
+  teaser: images/twitter_feed/teaser.png
 excerpt: Проектируем News Feed как в твиттере
 date: '2018-02-01 00:00:00'
 layout: single
