@@ -45,6 +45,8 @@ public class Calculator
 	<figcaption>Two images.</figcaption>
 </figure>
 
+{% include gallery caption="This is a sample gallery with **Markdown support**." %}
+
 Видео на YouTube
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/l2Of1-d5E5o?controls=0&showinfo=0" frameborder="0" allowfullscreen></iframe> 
