@@ -18,19 +18,20 @@ gallery:
   - url: /images/sunny_ekb/4.jpg
     image_path: /images/sunny_ekb/4.jpg
     title: "Илюха безумно рад солнцу"
+  - url: /images/sunny_ekb/5.jpg
+    image_path: /images/sunny_ekb/5.jpg
+    title: "Обнимашки и любимый город"
     
 ---
 
 В Екатеринбурге выдались на редкость солнечные выходные. Уральская погода сурова — в конце апреля в городе еще много снега, но люди уже достают из гардероба легкую одежду и летние кроссовки.
 
-{% include gallery caption="Редкие солнечные деньки в Екб" %}{: .half .align-center}
-
 Классный кадр получилось заснять около ДИВСа. Парочка обнималась друг с другом — и вокруг не было никого, только огромные здания Екатеринбург-сити. 
 
-![Love & the city](/images/sunny_ekb/5.jpg 'Обнимашки и любимый город'){: .align-center}
+{% include gallery %}
 
 Всю неделю очень сильно ванилю — поэтому ловите ванильную песню. Кстати, Гречка скоро приедет в Екб, однозначно стоит сходить — люблю ходить на концерты с кучей школьников, весело-задорно!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/v3Alfif5HQI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 На этом все, конец связи.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v3Alfif5HQI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
