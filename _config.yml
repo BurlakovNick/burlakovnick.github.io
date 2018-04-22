@@ -93,7 +93,7 @@ analytics:
 author:
   name             : "Burlakov Nick"
   avatar           : "/assets/awesome_me.png"
-  bio              : "Boring and humble programmer from Russia"
+  bio              : "Boring and humble programmer"
   location         : "Ekaterinburg, Russia"
   email            : "burlakov.nick@gmail.com"
   uri              :
@@ -262,6 +262,7 @@ defaults:
       related: true
       sidebar:
         nav: main
+      classes: wide
   - scope:
       path: ''
       type: pages

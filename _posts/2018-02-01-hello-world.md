@@ -4,9 +4,6 @@ header:
   teaser: images/twitter_feed/teaser.png
 excerpt: Проектируем News Feed как в твиттере
 date: '2018-02-01 00:00:00'
-layout: single
-classes: wide
-related: false
 ---
 
 Никогда не задумывались, как спроектировать новостную ленту, похожую на главную страницу твиттера?
