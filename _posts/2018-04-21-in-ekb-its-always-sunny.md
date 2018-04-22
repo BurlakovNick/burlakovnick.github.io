@@ -3,7 +3,7 @@ title: В Екатеринбурге всегда солнечно
 header:
   teaser: images/sunny_ekb/1.jpg
 excerpt: На самом деле нет
-date: '2018-04-22 00:00:00'
+date: '2018-04-21 00:00:00'
 
 gallery:
   - url: /images/sunny_ekb/1.jpg
