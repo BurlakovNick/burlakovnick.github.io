@@ -1,0 +1,4 @@
+theme      			 : minimal-mistakes-jekyll
+remote_theme 		 :
+comments:
+  provider       : false
