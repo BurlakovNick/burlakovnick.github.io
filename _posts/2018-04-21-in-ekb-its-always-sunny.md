@@ -1,7 +1,7 @@
 ---
 title: В Екатеринбурге всегда солнечно
 header:
-  teaser: images/sunny_ekb/teaser.jpg
+  teaser: /images/sunny_ekb/teaser.jpg
   overlay_image: /images/sunny_ekb/overlay.jpg
   overlay_filter: 0.5
   show_overlay_excerpt: false 
@@ -21,7 +21,7 @@ gallery:
   - url: /images/sunny_ekb/4.jpg
     image_path: /images/sunny_ekb/4.jpg
     title: "Илюха безумно рад солнцу"
-- url: /images/sunny_ekb/5.jpg
+  - url: /images/sunny_ekb/5.jpg
     image_path: /images/sunny_ekb/5.jpg
     title: "Обнимашки и любимый город"
     
