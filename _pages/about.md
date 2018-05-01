@@ -9,6 +9,7 @@ header:
 hide_signup: true
 sidebar:
   nav: main
+classes: wide
 ---
 
 Привет!
