@@ -58,7 +58,7 @@ search                   : # true, false (default)
 search_full_content      :  # true, false (default)
 
 # SEO Related
-google_site_verification :
+google_site_verification : "4B6sdLtkn1MvblLpHyTVsJqrNQv8uAsDZSGPbaPNbgU"
 bing_site_verification   :
 yandex_site_verification :
 naver_site_verification  :
