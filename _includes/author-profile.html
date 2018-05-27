@@ -121,6 +121,14 @@
         </li>
       {% endif %}
 
+      {% if author.telegram %}
+        <li>
+          <a href="https://telegram.me/@{{ author.instagram }}" itemprop="sameAs">
+            <i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram
+          </a>
+        </li>
+      {% endif %}
+
       {% if author.tumblr %}
         <li>
           <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs">
