@@ -20,4 +20,4 @@ classes: wide
 
 Изредка я пишу в этот блог всякие глупости.
 
-Если захочешь связаться — напиши мне на [burlakov.nick@gmail.com](mailto:burlakov.nick@gmail.com), пообщаемся!
+Если захочешь связаться — напиши мне в [телеграм](https://telegram.me/@burlakov.nick) или на [почту](mailto:burlakov.nick@gmail.com), пообщаемся!
