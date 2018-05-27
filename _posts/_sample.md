@@ -4,6 +4,8 @@ header:
 teaser: images/about/beer.png
 excerpt: И какое-то описание
 date: '2018-04-22 00:00:00'
+toc: true
+toc_label: "Для больших постов лучше включить навигацию в виде Table of contents"
 ---
 
 *курсив*
