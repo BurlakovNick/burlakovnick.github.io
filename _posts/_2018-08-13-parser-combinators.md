@@ -30,7 +30,7 @@ toc_label: "Содержание"
 
 Слова для фильтрации разделяются запятыми. Условие `Must` заключается в круглые скобки, `Should` — в квадратные.
 
-Фильтр можно описать простой грамматикой (в форме [БНФ](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form)):
+Фильтр можно описать простой грамматикой (в [форме Бэкуса — Наура](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form)):
 
 ```xml
 <word> := <letter> | <letter><word>
@@ -45,98 +45,11 @@ toc_label: "Содержание"
 - Заведем стек для запоминания последовательности открытых скобок;
 - Вместе с открытой скобкой будем хранить список из построенных фильтров внутри этой скобки.
 
-Реализацию можно посмотреть [на github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs):
+Посмотрим на реализацию парсера [на github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs).
 
-```csharp
-public static IFilter BuildFromText(string text)
-{
-    var stack = new Stack<(char, List<IFilter>)>();
-    var word = new List<char>();
+Мерлинова борода! Получилось не так-то просто. Почти сто строк кода, множество условий, низкоуровневая работа со стеком — ужас!
 
-    stack.Push(('@', new List<IFilter>()));
-
-    foreach (var ch in text)
-    {
-        if (char.IsWhiteSpace(ch))
-        {
-            continue;
-        }
-
-        if (ch == ')' || ch == ']')
-        {
-            Pop(ch);
-            continue;
-        }
-
-        if (ch == '(' || ch == '[')
-        {
-            Push(ch);
-            continue;
-        }
-
-        if (ch == ',')
-        {
-            ClearWord();
-            continue;
-        }
-
-        word.Add(ch);
-    }
-
-    ClearWord();
-
-    return stack.Peek().Item2.First();
-
-    void ClearWord()
-    {
-        if (word.Count > 0)
-        {
-            stack
-             .Peek()
-             .Item2
-             .Add(new WordFilter(
-                 new string(word.ToArray())
-                 ));
-        }
-
-        word.Clear();
-    }
-
-    void Push(char ch)
-    {
-        ClearWord();
-        stack.Push((ch, new List<IFilter>()));
-    }
-
-    void Pop(char ch)
-    {
-        ClearWord();
-
-        if (!stack.TryPop(out var top))
-        {
-            throw new Exception(
-                $"stack is empty, expected = {ch}"
-                );
-        }
-
-        var expected = ch == ')' ? '(' : '[';
-        if (top.Item1 != expected)
-        {
-            throw new Exception(
-                $"on top of stack is {top}, expected = {ch}"
-                );
-        }
-
-        var newFilter = ch == ')'
-            ? (IFilter) new MustFilter(top.Item2)
-            : new ShouldFilter(top.Item2);
-
-        stack.Peek().Item2.Add(newFilter);
-    }
-}
-```
-
-Мерлинова борода! Получилось не так-то просто. В наивном подходе я вижу несколько проблем:
+В наивном подходе я вижу несколько проблем:
 - Код парсера лапшеобразный, в него страшно добавлять новые фичи;
 - Есть несколько крайних случаев, которые легко пропустить (модульными тестами я отловил 3 бага перед тем, как этот код заработал);
 - И код совершенно не отображает грамматику, которую мы разбираем.
@@ -145,7 +58,7 @@ public static IFilter BuildFromText(string text)
 
 ## Монадические комбинаторы парсеров
 
-Один из подходов к построению парсеров — представить простые парсерсы в виде функций, а затем научиться комбинировать их с помощью функций высшего порядка (комбинаторов). 
+Один из подходов к построению парсеров — представить простые парсерсы в виде функций, а затем научиться комбинировать их с помощью функций высшего порядка (комбинаторов).
 
 Попытаюсь доступно изложить идею. За хардкором отсылаю к статье — [Hutton, Meijer, Monadic parser combinators](http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf).
 
@@ -179,12 +92,9 @@ public static Parser<string> Char(char ch)
         if (input.Current == ch)
             return Result.Success<string>(
                 input.Current.ToString(),
-                input.Advance()
-        );
+                input.Advance());
         else
-            return Result.Failure<string>(
-                input
-            );
+            return Result.Failure<string>(input);
     });   
 }
 ```
@@ -229,12 +139,10 @@ public static Parser<string> Letter()
         if (char.IsLetter(input.Current))
             return Result.Success<string>(
                 input.Current.ToString(),
-                input.Advance()
-        );
+                input.Advance());
         else
             return Result.Failure<string>(
-                input
-            );
+                input);
     });
 }
 
@@ -250,6 +158,14 @@ public static Parser<IEnumerable<T>> Many<T>(this Parser<T> parser)
         return Result.Success<IEnumerable<T>>((IEnumerable<T>) list, input)
     });
 }
+
+var parser = Letter().Many();
+var result = parser("abc123");
+
+//Результат - "abc"
+Console.WriteLine(result.Value);
+//Результат - "123"
+Console.WriteLine(result.Remainder);
 ```
 
 Или можно скомбинировать парсеры двух строк, идущих друг за другом, с помощью комбинатора `Then`:
@@ -276,10 +192,12 @@ public static Parser<string> Then(
 
 ```csharp
 var wordParser = 
-    Char('('))
+    Char('(')
     .Then(left => (left, AnyLetter().Many())
     .Then((left, word) => (left, word, Char(')')))
-    .Then((_, word, _) => word);
+    //левая и правая скобка не нужны, поэтому можно сделать discard параметров
+    //спасибо тебе, C# 7.0!
+    .Then((_, word, _) => word); 
 ```
 
 ## При чем здесь монады?
@@ -298,7 +216,7 @@ var wordParser =
 
 ## Реализация парсера с помощью Sprache
 
-Попробуем реализовать тот же парсер с помощью [Sprache](https://github.com/sprache/Sprache) — легковесной библиотеки, в которой уже реализованы разные комбинаторы парсеров. Все исходники можно посмотреть на [Github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs).
+Попробуем реализовать тот же парсер с помощью [Sprache](https://github.com/sprache/Sprache) — легковесной библиотеки, в которой уже реализованы разные комбинаторы парсеров. Исходники смотри на [Github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs).
 
 На выходе парсер должен вернуть `IFilter` — комбинацию фильтров `Must` и `Should`, собранную по скобочному выражению. Выражение, которое парсим — это одно слово или выражение `Must` или выражение `Should`.
 
@@ -343,11 +261,19 @@ private static Parser<IFilter> Must =>
     select new MustFilter(expr.GetOrDefault()?.ToList());
 ```
 
-Обратите внимание на:
+Так, что за ерунда с `from` и `in`? Это хипстерский LINQ синтаксис — компилятор автоматически заменяет такие конструкции на цепочку вызовов, потому что в библиотеке Sprache объявлен метод `SelectMany`. По смыслу он делает то же самое, что и `Then`. То есть код с `from` эквивалентен такой записи:
 
-- Метод `Optional`, который позволяет пропустить часть выражения — она становится необязательной;
-- Метод `GetOrDefault()` — он нужен, чтобы получить результат парсинга `Optional`-выражения;
-- Хипстерский LINQ синтаксис с `from` и `in` — компилятор автоматически заменяет такие конструкции на цепочку вызовов, потому что в библиотеке Sprache объявлен метод `SelectMany`. По смыслу он делает то же самое, что и `Then`.
+```csharp
+Parse
+    .Char('(').
+    .Then(left => (left, List.Optional()))
+    .Then((left, expr) => (left, expr, Char(')')
+    .Then((_, expr, _) => new MustFilter(expr.GetOrDefault()?.ToList()));
+```
+
+Синтаксис с `from` намного читаемее, на мой вкус!
+
+Метод `Optional` пропускает часть выражения — она становится необязательной. Метод `GetOrDefault()` нужен, чтобы получить результат парсинга `Optional`-выражения.
 
 И наконец, можно воспользоваться готовым парсером:
 
@@ -432,7 +358,7 @@ ContractRule: {
 - Сильно ограничен набор простых условий по сделке (на деле их намно-о-о-го больше!);
 - Не выводятся красивые сообщения об ошибках, если правило не соответствует грамматике.
 
-То есть это больше proof-of-concept, чем production-ready парсер. Но! Весь код системы правил и парсер я написал за 2 часа. Без Sprache ушло бы на порядок больше времени, чтобы распарсить такую грамматику. 
+То есть это больше proof-of-concept, чем production-ready парсер. Но! Весь код системы правил и парсер я написал всего за 2 часа. Без Sprache ушло бы на порядок больше времени, чтобы распарсить такую грамматику. 
 
 Ну и комбинировать парсеры друг с другом с API Sprache — это кайф для разработчика :)
 
