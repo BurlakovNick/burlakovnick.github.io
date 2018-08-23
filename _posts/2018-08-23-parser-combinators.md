@@ -150,12 +150,15 @@ public static Parser<IEnumerable<T>> Many<T>(this Parser<T> parser)
 {
     return Parser<IEnumerable<T>>(input => {
         var list = new List<T>();
-        for (var result = parser(input); result.Success; result = parser(input))
+        for (var result = parser(input);
+            result.Success;
+            result = parser(input))
         {
             list.Add(result.Value);
             input = result.Remainder;
         }
-        return Result.Success<IEnumerable<T>>((IEnumerable<T>) list, input)
+        return Result.Success<IEnumerable<T>>(
+            (IEnumerable<T>) list, input);
     });
 }
 
@@ -195,7 +198,7 @@ var wordParser =
     Char('(')
     .Then(left => (left, AnyLetter().Many())
     .Then((left, word) => (left, word, Char(')')))
-    //левая и правая скобка не нужны, поэтому можно сделать discard параметров
+    //левая и правая скобка не нужны, делаем discard параметров
     //спасибо тебе, C# 7.0!
     .Then((_, word, _) => word); 
 ```
@@ -268,7 +271,8 @@ Parse
     .Char('(').
     .Then(left => (left, List.Optional()))
     .Then((left, expr) => (left, expr, Char(')')
-    .Then((_, expr, _) => new MustFilter(expr.GetOrDefault()?.ToList()));
+    .Then((_, expr, _) =>
+        new MustFilter(expr.GetOrDefault()?.ToList()));
 ```
 
 Синтаксис с `from` намного читаемее, на мой вкус!
@@ -280,13 +284,18 @@ Parse
 ```csharp
 public static IFilter BuildFromText(string text)
 {
-    var normalizedText = new string(text.Where(c => !char.IsWhiteSpace(c)).ToArray());
+    var normalizedText = new string(
+        text
+        .Where(c => !char.IsWhiteSpace(c))
+        .ToArray());
     var input = new Input(normalizedText);
     var parser = Expr;
     var parsed = parser(input);
     if (!parsed.WasSuccessful)
     {
-        throw new Exception($"Message: {parsed.Message}, Offset: {parsed.Remainder}");
+        throw new Exception(
+            $"Message: {parsed.Message}, " +
+            $"Offset: {parsed.Remainder}");
     }
     return parsed.Value;
 }
