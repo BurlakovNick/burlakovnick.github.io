@@ -1,7 +1,7 @@
 ---
 title: Комбинаторы парсеров на Sprache
 header:
-teaser: images/sprache/die_sprache.png
+  teaser: images/sprache/die_sprache.png
 excerpt: Напишем вместе несколько парсеров без бойлерплейта
 date: '2018-08-23 00:00:00'
 toc: true
