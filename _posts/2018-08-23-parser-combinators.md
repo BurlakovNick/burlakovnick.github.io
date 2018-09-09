@@ -268,7 +268,7 @@ private static Parser<IFilter> Must =>
 
 ```csharp
 Parse
-    .Char('(').
+    .Char('(')
     .Then(left => (left, List.Optional()))
     .Then((left, expr) => (left, expr, Char(')')
     .Then((_, expr, _) =>
