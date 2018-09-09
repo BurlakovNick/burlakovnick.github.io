@@ -19,10 +19,10 @@
     }
   }
   
-.page__content a.anchor-link {
-text-decoration: none;
-}
-
-*:hover  > .anchor-link {
-opacity: 1;
-}
+  .page__content a.anchor-link {
+    text-decoration: none;
+  }
+  
+  *:hover  > .anchor-link {
+    opacity: 1;
+  }
