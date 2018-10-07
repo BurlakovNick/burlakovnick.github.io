@@ -18,6 +18,6 @@ classes: wide
 
 В прошлом — закончил магистратуру в [никому не известном университете](http://istu.ru/) в [большой деревне](https://ru.wikipedia.org/wiki/%D0%98%D0%B6%D0%B5%D0%B2%D1%81%D0%BA), участвовал в [ACM ICPC](https://en.wikipedia.org/wiki/ACM_International_Collegiate_Programming_Contest), работал вожатым в лагере.
 
-Изредка я пишу в этот блог всякие глупости.
+Изредка я пишу в этот блог всякие глупости. Зачем? В первую очередь — [для себя](https://twitter.com/debugthings/status/661993057529688065), а там как пойдет.
 
 Если захочешь связаться — напиши мне в [Telegram](https://telegram.me/@burlakov.nick) или на [почту](mailto:burlakov.nick@gmail.com), пообщаемся!
