@@ -337,7 +337,7 @@ public static IFilter BuildFromText(string text)
 
 Представим правило формирования документа на таком языке:
 
-```
+```csharp
 ContractRule: {
     Product = Diadoc,
     Logic = {
