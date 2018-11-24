@@ -259,7 +259,7 @@ defaults:
       related: true
       sidebar:
         nav: main
-      classes: #wide for ultra wide pages
+      classes: wide #wide for ultra wide pages
   - scope:
       path: ''
       type: pages
