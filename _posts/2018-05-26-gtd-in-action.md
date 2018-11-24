@@ -4,8 +4,6 @@ header:
   teaser: images/gtd/teaser.jpg
 excerpt: Как все успевать
 date: '2018-05-26 00:00:00'
-toc: true
-toc_label: "Содержание"
 ---
 
 В этом посте расскажу про свой опыт:
