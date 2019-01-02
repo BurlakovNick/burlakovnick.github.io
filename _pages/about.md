@@ -1,10 +1,11 @@
 ---
-title: About
+title: Обо мне
 permalink: "/about/"
 layout: single
 author_profile: true
-excerpt: Обо мне
 header:
+  overlay_image: /images/overlay.jpg
+  overlay_filter: 0.4
   teaser: "images/about/me.png"
 hide_signup: true
 sidebar:
