@@ -17,7 +17,7 @@ title                    : "Burlakov Nick. Coding blog"
 title_separator          : "-"
 name                     : "Burlakov Nick. Coding blog"
 description              : "Код, книжки, мысли"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://code.burlakov.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 teaser                   : "/assets/awesome_me.jpg"
 # breadcrumbs            : false # true, false (default)
