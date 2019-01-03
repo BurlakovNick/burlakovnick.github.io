@@ -4,7 +4,7 @@ main:
     children:
     - title: "Блог про код и книжки"
       url: /
-    - title: "Блог про код и книжки"
+    - title: "Блог с картинками"
       url: "https://burlakov.io"
     - title: "Обо мне"
       url: /about/
