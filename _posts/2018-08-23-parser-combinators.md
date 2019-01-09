@@ -43,7 +43,7 @@ date: '2018-08-23 00:00:00'
 - Заведем стек для запоминания последовательности открытых скобок;
 - Вместе с открытой скобкой будем хранить список из построенных фильтров внутри этой скобки.
 
-Посмотрим на реализацию парсера на [github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs).
+Посмотрим на реализацию парсера на [github](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs).
 
 Мерлинова борода! Получилось не так-то просто. Почти сто строк кода, множество условий, низкоуровневая работа со стеком — ужас!
 
@@ -217,7 +217,7 @@ var wordParser =
 
 ## Реализация парсера с помощью Sprache
 
-Попробуем реализовать тот же парсер с помощью [Sprache](https://github.com/sprache/Sprache) — легковесной библиотеки, в которой уже реализованы разные комбинаторы парсеров. Исходники смотри на [Github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs).
+Попробуем реализовать тот же парсер с помощью [Sprache](https://github.com/sprache/Sprache) — легковесной библиотеки, в которой уже реализованы разные комбинаторы парсеров. Исходники смотри на [Github](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs).
 
 На выходе парсер должен вернуть `IFilter` — комбинацию фильтров `Must` и `Should`, собранную по скобочному выражению. Выражение, которое парсим — это одно слово или выражение `Must` или выражение `Should`.
 
@@ -299,7 +299,7 @@ public static IFilter BuildFromText(string text)
 }
 ```
 
-Теперь давайте сравним [наивный парсер](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs) и [умный](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs). Реализация с помощью Sprache компактнее и точь-в-точь совпадает с исходной грамматикой!
+Теперь давайте сравним [наивный парсер](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserExamples/Example1/NaiveFilterParser.cs) и [умный](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserExamples/Example1/FilterParser.cs). Реализация с помощью Sprache компактнее и точь-в-точь совпадает с исходной грамматикой!
 
 ## Эффективность
 
@@ -309,7 +309,7 @@ public static IFilter BuildFromText(string text)
 - Тест с большой вложенностью скобок. Генерируется так — букву `x` заворачиваем в скобки `()`, полученное выражение заворачиваем в квадратные скобки `[]` — и так далее 500 раз. Итоговое выражение размножить раз 100 и записать в один список.
 - Тест с длинными списками. Запишем один большой список из 100 списков, в каждом из которых через запятую 500 раз повторим символ&nbsp;`x`.
 
-Исходный код бенчмарка на [Github](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserBenchmark/Program.cs).
+Исходный код бенчмарка на [Github](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserBenchmark/Program.cs).
 
 Итоговые результаты:
 ```
@@ -357,7 +357,7 @@ ContractRule: {
 
 Правило — набор условий из `if`, `else` и булевых выражений. Эксперт может комбинировать простые знания о сделке — выставлен ли счет на постоплату (`Bill.IsPostpay`) или был ли договор с клиентом (`History.HasContract`), чтобы определить, нужно ли формировать документ по сделке. Проверку простых условий реализует разработчик (они меняются очень редко). А часто меняющиеся бизнес-правила живут отдельной жизнью.
 
-Парсер для правил получается очень короткий. Исходный код [здесь](https://github.com/BurlakovNick/SpracheExamples/blob/master/Parsers/ParserExamples/Example2/Parsers/RuleParser.cs). Меньше 100 строк кода!
+Парсер для правил получается очень короткий. Исходный код [здесь](https://github.com/BurlakovNick/sprache-examples/blob/master/Parsers/ParserExamples/Example2/Parsers/RuleParser.cs). Меньше 100 строк кода!
 
 В парсере есть несколько ограничений, например:
 - Нет поддержки ветви `else`;
@@ -373,4 +373,4 @@ ContractRule: {
 
 Если нужно распарсить сложный текст — не надо изобретать велосипед, используй готовые инструменты. Sprache прекрасно подходит, чтобы быстро наваять парсер.
 
-Исходный код всех примеров есть на [github](https://github.com/BurlakovNick/SpracheExamples). Остались вопросы — пиши, пообщаемся.
+Исходный код всех примеров есть на [github](https://github.com/BurlakovNick/sprache-examples). Остались вопросы — пиши, пообщаемся.
