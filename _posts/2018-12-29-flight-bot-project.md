@@ -36,6 +36,8 @@ date: '2019-01-29 00:00:00'
 
 ![Пример новости](/images/flight-bot-project/bot_2.png){: .align-center}
 
+Бот в Telegram: [@flights_suggest_bot](https://t.me/flights_suggest_bot)
+
 ## Реализация
 
 Немного техномяса для тех, кому может быть интересно. Исходнички на [github](https://github.com/BurlakovNick/flights-suggest).
