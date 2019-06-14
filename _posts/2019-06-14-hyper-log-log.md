@@ -2,7 +2,7 @@
 title: Считаем число уникальных объектов 
 header:
   teaser: images/lean-startup/teaser.jpg
-excerpt: Быстро и неточно. Алгоритм HyperLogLog
+excerpt: Быстро и почти точно. Алгоритм HyperLogLog
 date: '2019-06-14 00:00:00'
 ---
 
