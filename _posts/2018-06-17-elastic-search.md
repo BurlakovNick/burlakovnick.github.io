@@ -229,7 +229,7 @@ POST /index/_analyze
 ```json
 {
   "analysis": {
-    "filer": {
+    "filter": {
       "phone_multiplier": {
         "pattern": "(?<!\\d)[7|8](\\d{10})(?!\\d)",
         "type": "pattern_replace",
